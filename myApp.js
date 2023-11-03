@@ -3,7 +3,7 @@ let app = express();
 const PORT = 3000
 
 // Mount Middleware for static files
-app.use(express.static(__dirname + '/public'))
+app.use("/public", express.static(__dirname + '/public'))
 
 
 app.get("/", (req, res) => {
