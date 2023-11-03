@@ -3,7 +3,13 @@ let express = require('express');
 let app = express();
 const path = require('path')
 
+const logger = (req, res, next) => {
+  console.log(`${req.method} ${req.path} - ${req.ip}`)
+  next();
+}
+
 // Mount Middleware for static files
+app.use(logger())
 app.use("/public", express.static(path.join(__dirname, 'public')))
 
 
