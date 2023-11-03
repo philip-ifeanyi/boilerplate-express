@@ -10,8 +10,7 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 })
 
-app.listen(PORT, ()=> {
-  console.log(`Listening on port ${PORT}`)
-})
-
+// app.listen(PORT, ()=> {
+//   console.log(`Listening on port ${PORT}`)
+// })
  module.exports = app;
