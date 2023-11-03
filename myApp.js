@@ -12,11 +12,16 @@ app.get("/", (req, res) => {
 })
 
 app.get("/json", (req, res) => {
-  const response = {"message": "hello json"}
-  if(process.env.MESSAGE_STYLE === "uppercase") {
-    response.message = response.message.toUpperCase()
-    console.log(response)
+  if ( process.env['MESSAGE_STYLE'] === "uppercase") {
+    res.json({ "message": message.toUpperCase() });
   }
-  res.json(response)
+  else {
+    res.json({ "message": message });
+  }
 })
- module.exports = app;
+
+app.listen(8080, (req, res) => {
+  console.log("listening on port 8080")
+});
+
+module.exports = app;
