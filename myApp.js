@@ -34,8 +34,13 @@ app.get("/now", (req, res, next) => {
   res.json({ "time": req.time});
 })
 
-app.listen(8080, (req, res) => {
-  console.log("listening on port 8080")
-});
+app.get('/:word/echo', (req, res) => {
+  res.json({"echo": req.params.word});
+})
+
+// For Testing purposes only
+// app.listen(8080, (req, res) => {
+//   console.log("listening on port 8080")
+// });
 
 module.exports = app;
