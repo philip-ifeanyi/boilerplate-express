@@ -38,6 +38,15 @@ app.get('/:word/echo', (req, res) => {
   res.json({"echo": req.params.word});
 })
 
+app.route('/name')
+  .get((req, res) => {
+    const { first, last } = req.query
+    res.json({"name": `${first} ${last}`})
+  })
+  .post((req, res) => {
+
+  });
+
 // For Testing purposes only
 // app.listen(8080, (req, res) => {
 //   console.log("listening on port 8080")
