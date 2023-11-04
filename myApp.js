@@ -3,11 +3,13 @@ let express = require('express');
 let app = express();
 const path = require('path')
 
-// Mount Middleware for static files
+// A middleware to show request details
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`)
   next();
 })
+
+// Mount Middleware for static files
 app.use("/public", express.static(path.join(__dirname, 'public')))
 
 
@@ -23,6 +25,13 @@ app.get("/json", (req, res) => {
   else {
     res.json({ "message": message });
   }
+})
+
+app.get("/now", (req, res, next) => {
+  req.time = new Date().toString()
+  next()
+}, (req, res) => {
+  res.json({ "time": req.time});
 })
 
 app.listen(8080, (req, res) => {
