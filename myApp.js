@@ -2,6 +2,7 @@ require('dotenv').config()
 let express = require('express');
 let app = express();
 const path = require('path')
+const bodyParser = require('body-parser')
 
 // A middleware to show request details
 app.use((req, res, next) => {
@@ -11,6 +12,9 @@ app.use((req, res, next) => {
 
 // Mount Middleware for static files
 app.use("/public", express.static(path.join(__dirname, 'public')))
+
+// Mount middleware for handling POST requests
+app.use(bodyParser.urlencoded({extended: false}))
 
 
 app.get("/", (req, res) => {
