@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 app.use("/public", express.static(path.join(__dirname, 'public')))
 
 // Mount middleware for handling POST requests
-app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.urlencoded({extended: true}))
 
 
 app.get("/", (req, res) => {
@@ -44,14 +44,13 @@ app.get('/:word/echo', (req, res) => {
 
 app.route('/name')
   .post((req, res) => {
-  })
-  .get((req, res) => {
-    res.json({"name": `${req.body.first} ${req.body.last}`})
+    const { first, last } = req.body
+    res.json({"name": `${first} ${last}`})
   })
 
 // For Testing purposes only
-// app.listen(8080, (req, res) => {
-//   console.log("listening on port 8080")
-// });
+app.listen(8080, (req, res) => {
+  console.log("listening on port 8080")
+});
 
 module.exports = app;
