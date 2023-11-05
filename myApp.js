@@ -43,13 +43,11 @@ app.get('/:word/echo', (req, res) => {
 })
 
 app.route('/name')
-  .get((req, res) => {
-    const { first, last } = req.query
-    res.json({"name": `${first} ${last}`})
-  })
   .post((req, res) => {
-
-  });
+  })
+  .get((req, res) => {
+    res.json({"name": `${req.body.first} ${req.body.last}`})
+  })
 
 // For Testing purposes only
 // app.listen(8080, (req, res) => {
